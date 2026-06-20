@@ -56,3 +56,18 @@ export const createVideo = async (req, res) => {
     });
   }
 };
+
+// Get all videos
+export const getAllVideos = async (req, res) => {
+  try {
+    const videos = await Video.find()
+      .populate("channel", "channelName")
+      .populate("owner", "username");
+
+    res.status(200).json(videos);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
