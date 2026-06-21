@@ -1,7 +1,21 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaYoutube, FaSearch } from "react-icons/fa";
 
 function Navbar() {
+  const navigate = useNavigate();
+
+  const token = localStorage.getItem("token");
+  const user = JSON.parse(
+    localStorage.getItem("user") || "{}"
+  );
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+
+    navigate("/");
+  };
+
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
       <div className="max-w-screen-2xl mx-auto px-4 py-3 flex items-center justify-between">
@@ -29,19 +43,36 @@ function Navbar() {
 
         {/* Navigation */}
         <div className="flex items-center gap-4">
-          <Link
-            to="/login"
-            className="px-4 py-2 border rounded-lg hover:bg-gray-100"
-          >
-            Login
-          </Link>
+          {token ? (
+            <>
+              <span className="font-medium text-gray-700">
+                Hi, {user.username || "User"}
+              </span>
 
-          <Link
-            to="/register"
-            className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
-          >
-            Register
-          </Link>
+              <button
+                onClick={handleLogout}
+                className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                className="px-4 py-2 border rounded-lg hover:bg-gray-100"
+              >
+                Login
+              </Link>
+
+              <Link
+                to="/register"
+                className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+              >
+                Register
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </header>
