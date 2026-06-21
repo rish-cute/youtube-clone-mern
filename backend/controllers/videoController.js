@@ -92,3 +92,106 @@ export const getVideoById = async (req, res) => {
     });
   }
 };
+
+// Update a video
+export const updateVideo = async (req, res) => {
+  try {
+    const video = await Video.findById(req.params.id);
+
+    if (!video) {
+      return res.status(404).json({
+        message: "Video not found",
+      });
+    }
+
+    // Check ownership
+    if (video.owner.toString() !== req.user._id.toString()) {
+      return res.status(403).json({
+        message: "Not authorized to update this video",
+      });
+    }
+
+    const updatedVideo = await Video.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+
+    res.status(200).json({
+      message: "Video updated successfully",
+      video: updatedVideo,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
+// Delete a video
+export const deleteVideo = async (req, res) => {
+  try {
+    const video = await Video.findById(req.params.id);
+
+    if (!video) {
+      return res.status(404).json({
+        message: "Video not found",
+      });
+    }
+
+    // Check ownership
+    if (video.owner.toString() !== req.user._id.toString()) {
+      return res.status(403).json({
+        message: "Not authorized to delete this video",
+      });
+    }
+
+    await video.deleteOne();
+
+    res.status(200).json({
+      message: "Video deleted successfully",
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
+// Search videos by title
+export const searchVideos = async (req, res) => {
+  try {
+    const searchTerm = req.query.search || "";
+
+    const videos = await Video.find({
+      title: {
+        $regex: searchTerm,
+        $options: "i",
+      },
+    });
+
+    res.status(200).json(videos);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
+// Filter videos by category
+export const filterVideosByCategory = async (req, res) => {
+  try {
+    const videos = await Video.find({
+      category: req.params.category,
+    });
+
+    res.status(200).json(videos);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
