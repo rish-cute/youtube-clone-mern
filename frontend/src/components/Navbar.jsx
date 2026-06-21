@@ -5,7 +5,8 @@ import { useState } from "react";
 function Navbar() {
   const navigate = useNavigate();
 
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] =
+    useState("");
 
   const token = localStorage.getItem("token");
 
@@ -32,7 +33,6 @@ function Navbar() {
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
       <div className="max-w-screen-2xl mx-auto px-4 py-3 flex items-center justify-between">
-        {/* Logo */}
         <Link
           to="/"
           className="flex items-center gap-2 text-red-600 font-bold text-2xl"
@@ -41,7 +41,6 @@ function Navbar() {
           <span>YouTube Clone</span>
         </Link>
 
-        {/* Search */}
         <div className="hidden md:flex items-center border rounded-full overflow-hidden w-[450px]">
           <input
             type="text"
@@ -67,10 +66,16 @@ function Navbar() {
           </button>
         </div>
 
-        {/* Navigation */}
         <div className="flex items-center gap-4">
           {token ? (
             <>
+              <Link
+                to="/create-channel"
+                className="px-4 py-2 border rounded-lg hover:bg-gray-100"
+              >
+                Create Channel
+              </Link>
+
               <Link
                 to="/upload"
                 className="px-4 py-2 border rounded-lg hover:bg-gray-100"

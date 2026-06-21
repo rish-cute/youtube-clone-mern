@@ -10,6 +10,7 @@ import Channel from "./pages/Channel";
 import NotFound from "./pages/NotFound";
 import UploadVideo from "./pages/UploadVideo";
 import EditVideo from "./pages/EditVideo";
+import CreateChannel from "./pages/CreateChannel";
 
 function App() {
   return (
@@ -18,9 +19,15 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
 
-          <Route path="/login" element={<Login />} />
+          <Route
+            path="/login"
+            element={<Login />}
+          />
 
-          <Route path="/register" element={<Register />} />
+          <Route
+            path="/register"
+            element={<Register />}
+          />
 
           <Route
             path="/video/:id"
@@ -35,6 +42,11 @@ function App() {
           <Route
             path="/channel/:id"
             element={<Channel />}
+          />
+
+          <Route
+            path="/create-channel"
+            element={<CreateChannel />}
           />
 
           <Route
