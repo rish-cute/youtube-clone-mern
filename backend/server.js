@@ -1,9 +1,12 @@
 import express from "express";
 import dotenv from "dotenv";
+
 import connectDB from "./config/db.js";
+
 import authRoutes from "./routes/authRoutes.js";
 import channelRoutes from "./routes/channelRoutes.js";
 import videoRoutes from "./routes/videoRoutes.js";
+import commentRoutes from "./routes/commentRoutes.js";
 
 dotenv.config();
 
@@ -17,8 +20,15 @@ app.use(express.json());
 
 // Authentication routes
 app.use("/api/auth", authRoutes);
+
+// Channel routes
 app.use("/api/channels", channelRoutes);
+
+// Video routes
 app.use("/api/videos", videoRoutes);
+
+// Comment routes
+app.use("/api/comments", commentRoutes);
 
 // Health check route
 app.get("/", (req, res) => {
