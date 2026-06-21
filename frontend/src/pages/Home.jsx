@@ -1,9 +1,13 @@
 function Home() {
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <h1 className="text-4xl font-bold text-red-600">
-        Tailwind Working
+    <div>
+      <h1 className="text-3xl font-bold mb-4">
+        Welcome to YouTube Clone
       </h1>
+
+      <p className="text-gray-600">
+        Browse videos, channels and comments.
+      </p>
     </div>
   );
 }
