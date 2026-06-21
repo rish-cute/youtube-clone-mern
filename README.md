@@ -8,9 +8,11 @@ Repository: https://github.com/rish-cute/youtube-clone-mern
 
 ---
 
-## Project Overview
+# Project Overview
 
-This project is a simplified YouTube-like platform developed as a full-stack web application. Users can create an account, create a channel, upload videos, browse videos uploaded by different users, view channel information, and interact through comments.
+This project is a simplified YouTube-like platform developed using the MERN stack. Users can register, log in, create channels, upload videos, search videos, filter videos by category, manage their uploaded videos, interact through comments, and browse channel pages.
+
+The application implements authentication and authorization using JWT and supports complete CRUD operations for videos and comments. The project also includes category-based filtering, search functionality, channel management, video management, responsive layouts, and error handling.
 
 The application follows a client-server architecture:
 
@@ -21,23 +23,24 @@ The application follows a client-server architecture:
 
 ---
 
-## Features
+# Features
 
-### Authentication
+## Authentication
 
 * User Registration
 * User Login
 * JWT Authentication
 * Protected Routes
 
-### Channel Management
+## Channel Management
 
 * Create Channel
+* One Channel Per User Validation
 * View Channel Details
 * Display Channel Owner Information
 * Display Channel Videos
 
-### Video Management
+## Video Management
 
 * Upload Video
 * View All Videos
@@ -48,7 +51,7 @@ The application follows a client-server architecture:
 * Delete Uploaded Videos
 * Owner-only Video Controls
 
-### Categories
+## Categories
 
 * Education
 * Programming
@@ -56,15 +59,18 @@ The application follows a client-server architecture:
 * Gaming
 * Music
 
-### Comments
+## Comment Management
 
 * Add Comment
 * View Comments
+* Edit Comment
+* Delete Comment
 * Display Comment Author
 
-### Additional Features
+## Additional Features
 
 * Sidebar Navigation
+* Category-based Video Filtering
 * Search Functionality
 * Like/Dislike UI
 * Responsive Layout
@@ -72,12 +78,14 @@ The application follows a client-server architecture:
 * Channel Navigation
 * Video Cards
 * Protected API Routes
+* Form Validation
+* Error Handling
 
 ---
 
-## Technology Stack
+# Technology Stack
 
-### Frontend
+## Frontend
 
 * React
 * React Router DOM
@@ -86,7 +94,7 @@ The application follows a client-server architecture:
 * React Icons
 * Vite
 
-### Backend
+## Backend
 
 * Node.js
 * Express.js
@@ -99,10 +107,7 @@ The application follows a client-server architecture:
 
 ---
 
-## Project Structure
-
-```text
-## Project Structure
+# Project Structure
 
 ```text
 youtube-clone/
@@ -169,6 +174,7 @@ youtube-clone/
 │       │
 │       ├── pages/
 │       │   ├── Channel.jsx
+│       │   ├── CreateChannel.jsx
 │       │   ├── EditVideo.jsx
 │       │   ├── Home.jsx
 │       │   ├── Login.jsx
@@ -185,27 +191,25 @@ youtube-clone/
 └── screenshots/
 ```
 
-```
-
 ---
 
-## API Endpoints
+# API Endpoints
 
-### Authentication
+## Authentication
 
 ```http
 POST /api/auth/register
 POST /api/auth/login
 ```
 
-### Channels
+## Channels
 
 ```http
 POST /api/channels
 GET /api/channels/:id
 ```
 
-### Videos
+## Videos
 
 ```http
 POST /api/videos
@@ -217,7 +221,7 @@ GET /api/videos/search
 GET /api/videos/category/:category
 ```
 
-### Comments
+## Comments
 
 ```http
 POST /api/comments/:videoId
@@ -228,7 +232,7 @@ DELETE /api/comments/:commentId
 
 ---
 
-## Environment Variables
+# Environment Variables
 
 Create a file named:
 
@@ -248,9 +252,9 @@ JWT_SECRET=your_jwt_secret
 
 ---
 
-## Installation
+# Installation
 
-### Clone Repository
+## Clone Repository
 
 ```bash
 git clone https://github.com/rish-cute/youtube-clone-mern.git
@@ -260,7 +264,7 @@ cd youtube-clone-mern
 
 ---
 
-## Backend Setup
+# Backend Setup
 
 Navigate to backend folder:
 
@@ -274,7 +278,7 @@ Install dependencies:
 npm install
 ```
 
-Create .env file and add environment variables.
+Create a `.env` file and add the required environment variables.
 
 Run backend server:
 
@@ -290,7 +294,7 @@ http://localhost:5000
 
 ---
 
-## Frontend Setup
+# Frontend Setup
 
 Open a new terminal.
 
@@ -320,7 +324,7 @@ http://localhost:5173
 
 ---
 
-## Running the Complete Application
+# Running the Complete Application
 
 ### Terminal 1
 
@@ -348,28 +352,29 @@ in your browser.
 
 ---
 
-## Screenshots
+# Screenshots
 
-Screenshots demonstrating project functionality are available in the screenshots folder.
-
-Examples:
+Screenshots included in the repository demonstrate:
 
 * Home Page
+* Sidebar Navigation
+* Category Filtering
+* Search Results
 * Login Page
 * Registration Page
-* Video Upload
-* Search Functionality
-* Category Filtering
-* Channel Page
-* Video Details
-* Comment Section
+* Create Channel Page
+* Channel Validation
+* Upload Video Page
+* Video Details Page
+* Comment CRUD Operations
 * Edit Video
 * Delete Video
-* 404 Page
+* Channel Page
+* Custom 404 Page
 
 ---
 
-## Future Improvements
+# Future Improvements
 
 * Real video streaming support
 * Persistent likes and dislikes
@@ -381,10 +386,10 @@ Examples:
 
 ---
 
-## Author
+# Author
 
-R.Naga Rishika
+R. Naga Rishika
 
 GitHub:
-https://github.com/rish-cute/
+https://github.com/rish-cute
 
