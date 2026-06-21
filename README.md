@@ -6,6 +6,10 @@ A full-stack YouTube Clone built using the MERN stack (MongoDB, Express.js, Reac
 
 Repository: https://github.com/rish-cute/youtube-clone-mern
 
+## Demo Video
+
+[Watch the Demo Video on Google Drive](https://drive.google.com/file/d/1VMrzijyA2rYrrUJeJjudqkUptGl-5OP9/view?usp=sharing)
+
 ---
 
 # Project Overview
