@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../services/api";
 import CommentSection from "../components/CommentSection";
+import { Link } from "react-router-dom";
 
 function VideoDetails() {
   const { id } = useParams();
@@ -66,9 +67,12 @@ function VideoDetails() {
           Channel
         </h2>
 
-        <p>
+        <Link
+        to={`/channel/${video.channel?._id}`}
+        className="text-red-600 font-medium hover:underline"
+        >
           {video.channel?.channelName || "Unknown Channel"}
-        </p>
+          </Link>
       </div>
 
       {/* Description Section */}
