@@ -67,10 +67,17 @@ function Navbar() {
           </button>
         </div>
 
-        {/* Right Side */}
+        {/* Navigation */}
         <div className="flex items-center gap-4">
           {token ? (
             <>
+              <Link
+                to="/upload"
+                className="px-4 py-2 border rounded-lg hover:bg-gray-100"
+              >
+                Upload
+              </Link>
+
               <span className="font-medium text-gray-700">
                 Hi, {user.username || "User"}
               </span>

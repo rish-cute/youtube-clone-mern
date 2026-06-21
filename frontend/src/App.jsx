@@ -8,6 +8,7 @@ import Register from "./pages/Register";
 import VideoDetails from "./pages/VideoDetails";
 import Channel from "./pages/Channel";
 import NotFound from "./pages/NotFound";
+import UploadVideo from "./pages/UploadVideo";
 
 function App() {
   return (
@@ -25,6 +26,8 @@ function App() {
           <Route path="/channel/:id" element={<Channel />} />
 
           <Route path="*" element={<NotFound />} />
+
+          <Route path="/upload" element={<UploadVideo />} />
         </Routes>
       </MainLayout>
     </BrowserRouter>
