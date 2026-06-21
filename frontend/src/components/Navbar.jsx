@@ -1,10 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
 import { FaYoutube, FaSearch } from "react-icons/fa";
+import { useState } from "react";
 
 function Navbar() {
   const navigate = useNavigate();
 
+  const [searchTerm, setSearchTerm] = useState("");
+
   const token = localStorage.getItem("token");
+
   const user = JSON.parse(
     localStorage.getItem("user") || "{}"
   );
@@ -14,6 +18,15 @@ function Navbar() {
     localStorage.removeItem("user");
 
     navigate("/");
+  };
+
+  const handleSearch = () => {
+    if (!searchTerm.trim()) {
+      navigate("/");
+      return;
+    }
+
+    navigate(`/?search=${searchTerm}`);
   };
 
   return (
@@ -33,15 +46,28 @@ function Navbar() {
           <input
             type="text"
             placeholder="Search videos..."
+            value={searchTerm}
+            onChange={(e) =>
+              setSearchTerm(e.target.value)
+            }
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleSearch();
+              }
+            }}
             className="w-full px-4 py-2 outline-none"
           />
 
-          <button className="px-4 py-2 bg-gray-100 hover:bg-gray-200">
+          <button
+            type="button"
+            onClick={handleSearch}
+            className="px-4 py-2 bg-gray-100 hover:bg-gray-200"
+          >
             <FaSearch />
           </button>
         </div>
 
-        {/* Navigation */}
+        {/* Right Side */}
         <div className="flex items-center gap-4">
           {token ? (
             <>

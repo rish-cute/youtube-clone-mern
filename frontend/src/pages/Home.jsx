@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import api from "../services/api";
 import VideoCard from "../components/VideoCard";
 
@@ -6,13 +7,28 @@ function Home() {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const [searchParams] = useSearchParams();
+
+  const search = searchParams.get("search");
+
   const fetchVideos = async () => {
     try {
-        const response = await api.get("/videos");
-        console.log("API Response:", response.data);
-        setVideos(response.data);
+      let response;
+
+      if (search) {
+        response = await api.get(
+          `/videos/search?search=${search}`
+        );
+      } else {
+        response = await api.get("/videos");
+      }
+
+      setVideos(response.data);
     } catch (error) {
-      console.error("Error fetching videos:", error);
+      console.error(
+        "Error fetching videos:",
+        error
+      );
     } finally {
       setLoading(false);
     }
@@ -20,7 +36,7 @@ function Home() {
 
   useEffect(() => {
     fetchVideos();
-  }, []);
+  }, [search]);
 
   if (loading) {
     return (
@@ -33,7 +49,9 @@ function Home() {
   return (
     <div>
       <h1 className="text-3xl font-bold mb-6">
-        Recommended Videos
+        {search
+          ? `Search Results: ${search}`
+          : "Recommended Videos"}
       </h1>
 
       {videos.length === 0 ? (
