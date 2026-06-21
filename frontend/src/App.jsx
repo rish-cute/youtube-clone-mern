@@ -9,6 +9,7 @@ import VideoDetails from "./pages/VideoDetails";
 import Channel from "./pages/Channel";
 import NotFound from "./pages/NotFound";
 import UploadVideo from "./pages/UploadVideo";
+import EditVideo from "./pages/EditVideo";
 
 function App() {
   return (
@@ -21,13 +22,30 @@ function App() {
 
           <Route path="/register" element={<Register />} />
 
-          <Route path="/video/:id" element={<VideoDetails />} />
+          <Route
+            path="/video/:id"
+            element={<VideoDetails />}
+          />
 
-          <Route path="/channel/:id" element={<Channel />} />
+          <Route
+            path="/edit-video/:id"
+            element={<EditVideo />}
+          />
 
-          <Route path="*" element={<NotFound />} />
+          <Route
+            path="/channel/:id"
+            element={<Channel />}
+          />
 
-          <Route path="/upload" element={<UploadVideo />} />
+          <Route
+            path="/upload"
+            element={<UploadVideo />}
+          />
+
+          <Route
+            path="*"
+            element={<NotFound />}
+          />
         </Routes>
       </MainLayout>
     </BrowserRouter>
